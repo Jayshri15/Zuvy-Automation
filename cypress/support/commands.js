@@ -10,7 +10,36 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+const userObj = Cypress.env();
+console.log(userObj)
+Cypress.Commands.add('loginByJWT', () => {
+    // Click the Google login button  
+    // cy.lo  
+    cy.visit('https://dev.app.zuvy.org/', {
+      onBeforeLoad(win) {
+          win.localStorage.setItem("AUTH",userObj["AUTH"])
+          win.localStorage.setItem("loggedOut",userObj["loggedOut"])
+          win.localStorage.setItem("loggedOutToken",userObj["loggedOutToken"])
+          win.localStorage.setItem("token",userObj["token"])
+          win.document.cookie = `secure_typeuser=${userObj['cookie']}; path=/;`;
+      },
+    })   
+  })
+
+
+
+Cypress.Commands.add('logOut', () => {
+    // Click the Google login button  
+    // cy.lo  
+    cy.clearLocalStorage("AUTH")
+    cy.clearLocalStorage("loggedOut")
+    cy.clearLocalStorage("loggedOutToken")
+    cy.clearLocalStorage("token")
+    cy.clearAllCookies()
+  })
+Cypress.Commands.add('login', (email, password) => { 
+ 
+ })
 //
 //
 // -- This is a child command --
