@@ -1,35 +1,3 @@
-// /// <reference types="cypress" />
-
-// describe('Home Page (Learn)', () => {
-//     before(function () {
-//         // Log in with JWT token
-//         cy.loginByJWT();
-//     });
-//     it('should visit the home page', () => {
-//         // Visit the home page
-//         cy.visit('https://dev.app.zuvy.org/');
-//         cy.get('.bg-white').click()
-//         cy.contains('Courses').click()
-//         cy.get('.flex-col > .inline-flex').click()
-//         cy.get('input[placeholder="Enter course name"]')
-//         .should('be.visible')
-//         .click({ force: true })
-//         .type('Automation jayu', { delay: 100 });
-
-//       // Click the "Create Course" button
-//       cy.contains('Create Course').click();
-
-//       // Assert that the new course is successfully created
-//       cy.contains('Automation jayu').should('exist');
-//       cy.get('.flex-col > .flex').click()
-
-
-//     });
-// });
-//     after(function () {
-//         cy.logOut();
-//     });
-
 
 /// <reference types="cypress" />
 
@@ -84,31 +52,6 @@ cy.get('textarea[placeholder*="description"]', { timeout: 10000 }) // Use a part
 .click({ force: true })   // Click to activate the textarea
 .clear()                  // Clear any existing text
 .type('This module covers the basics of Automation Testing.');
-
-
-        
-
-
-        // Step 12: Click on the batches link to manage course batches
-        // cy.get('[href="/admin/courses/69/batches"]').click();
-
-        // Step 13: Click on the students link to manage course students
-        // cy.get('[href="/admin/courses/69/students"]').click();
-
-        // // Step 14: Click on the add student option
-        // cy.get('.flex-col.justify-between').click();
-
-        // // Step 15: Click on the "Add Students" button
-        // cy.get('.flex-col > .inline-flex')
-        //     .should('be.visible') // Check that the button is visible
-        //     .and('not.be.disabled') // Ensure the button is not disabled
-        //     .click(); // Click the button
-
-        // // Step 16: Click on the "One at a time" option
-        // cy.get('.flex-col > .inline-flex')
-        //     .contains('One at a time') // Ensure the element contains the text "One at a time"
-        //     .should('be.visible')  .click(); // Click on the "One at a time" option
-        //     cy.get('[href="/admin/courses/70/curriculum"]').click();
 
     });
 
