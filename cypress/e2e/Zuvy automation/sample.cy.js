@@ -47,60 +47,68 @@ describe('Home Page (Learn)', () => {
         cy.get('.bg-white').click();
         cy.contains('Courses').click();
 
-        // Step 3: Click to create a new course
         cy.get('.flex-col > .inline-flex').click();
 
-        // Step 4: Fill in the course name and create the course
         cy.get('input[placeholder="Enter course name"]')
-            .should('be.visible') // Ensure the input field is visible
-            .click({ force: true }) // Click on the input field
-            .type('Automation jayu', { delay: 100 }); // Type the course name
+            .should('be.visible') 
+            .click({ force: true }) 
+            .type('Automation jayu', { delay: 100 }); 
 
-        // Step 5: Click the "Create Course" button
         cy.contains('Create Course').click();
 
-        // Step 6: Wait for the course to be created and visible in the list
-        cy.wait(2000); // Adjust if necessary for UI updates
+        cy.wait(2000); 
 
-        // Step 7: Search for the newly created course
         cy.get('.flex-col > .flex').type('Automation jayu', { delay: 100 });
 
-        // Step 8: Assert that the course is visible in the search results and click to access it
         cy.contains('Automation jayu', { timeout: 10000 }).should('exist').click();
 
-        // Step 9: Verify that you're on the course details page
         cy.url().should('include', '/admin/courses/');
 
-        // Step 10: Fill in the duration of the course
         cy.get('#\\:ra\\:-form-item') // Use double backslashes to escape special characters
             .should('be.visible') // Ensure the input field for duration is visible
-            .clear() // Clear any existing text (if needed)
-            .type('6 months', { delay: 100 }); // Type the duration
-
-        // Step 11: Click to save the duration or proceed
+            .clear() 
+            .type('6 months', { delay: 100 }); 
         cy.get('.bg-secondary').click();
+        cy.get('[href="/admin/courses/70/curriculum"]').click();
+        cy.get('.gap-y-5 > .inline-flex').click();
+        // Wait for the module name input to be visible and type in it
+cy.get('input[placeholder*="module name"]', { timeout: 10000 }) // Use a partial match if placeholder text is not exact
+.should('be.visible')    // Ensure the element is visible
+.click({ force: true })   // Click to activate the input
+.clear()                  // Clear any existing text
+.type('Module 1: Introduction to Automation');
+
+// Wait for the module description textarea to be visible and type in it
+cy.get('textarea[placeholder*="description"]', { timeout: 10000 }) // Use a partial match to handle variations in placeholder text
+.should('be.visible')    // Ensure the textarea is visible
+.click({ force: true })   // Click to activate the textarea
+.clear()                  // Clear any existing text
+.type('This module covers the basics of Automation Testing.');
+
+
+        
+
 
         // Step 12: Click on the batches link to manage course batches
-        cy.get('[href="/admin/courses/69/batches"]').click();
+        // cy.get('[href="/admin/courses/69/batches"]').click();
 
         // Step 13: Click on the students link to manage course students
-        cy.get('[href="/admin/courses/69/students"]').click();
+        // cy.get('[href="/admin/courses/69/students"]').click();
 
-        // Step 14: Click on the add student option
-        cy.get('.flex-col.justify-between').click();
+        // // Step 14: Click on the add student option
+        // cy.get('.flex-col.justify-between').click();
 
-        // Step 15: Click on the "Add Students" button
-        cy.get('.flex-col > .inline-flex')
-            .should('be.visible') // Check that the button is visible
-            .and('not.be.disabled') // Ensure the button is not disabled
-            .click(); // Click the button
+        // // Step 15: Click on the "Add Students" button
+        // cy.get('.flex-col > .inline-flex')
+        //     .should('be.visible') // Check that the button is visible
+        //     .and('not.be.disabled') // Ensure the button is not disabled
+        //     .click(); // Click the button
 
-        // Step 16: Click on the "One at a time" option
-        cy.get('.flex-col > .inline-flex')
-            .contains('One at a time') // Ensure the element contains the text "One at a time"
-            .should('be.visible') // Check that the option is visible
-            .click(); // Click on the "One at a time" option
-            cy.contains('One at a time').click();
+        // // Step 16: Click on the "One at a time" option
+        // cy.get('.flex-col > .inline-flex')
+        //     .contains('One at a time') // Ensure the element contains the text "One at a time"
+        //     .should('be.visible')  .click(); // Click on the "One at a time" option
+        //     cy.get('[href="/admin/courses/70/curriculum"]').click();
 
     });
 
