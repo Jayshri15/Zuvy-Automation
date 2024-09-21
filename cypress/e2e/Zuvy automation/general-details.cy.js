@@ -32,26 +32,21 @@ describe('Home Page (Learn)', () => {
 
         cy.url().should('include', '/admin/courses/');
 
-        cy.get('#\\:ra\\:-form-item') // Use double backslashes to escape special characters
-            .should('be.visible') // Ensure the input field for duration is visible
+        cy.get('#\\:ra\\:-form-item') 
+            .should('be.visible') 
             .clear() 
             .type('6 months', { delay: 100 }); 
         cy.get('.bg-secondary').click();
-        cy.get('[href="/admin/courses/70/curriculum"]').click();
-        cy.get('.gap-y-5 > .inline-flex').click();
-        // Wait for the module name input to be visible and type in it
-cy.get('input[placeholder*="module name"]', { timeout: 10000 }) // Use a partial match if placeholder text is not exact
-.should('be.visible')    // Ensure the element is visible
-.click({ force: true })   // Click to activate the input
-.clear()                  // Clear any existing text
-.type('Module 1: Introduction to Automation');
+        cy.get('[href="/admin/courses/70/students"]').click()
+        cy.contains('Add Students').click()
+        cy.contains('One at a time').click();
+        cy.get('#name').type('Jayshri ');
+        cy.get('#email').type('jayshri202@navgurukul.org');
+        cy.contains('Add Student').click()
 
-// Wait for the module description textarea to be visible and type in it
-cy.get('textarea[placeholder*="description"]', { timeout: 10000 }) // Use a partial match to handle variations in placeholder text
-.should('be.visible')    // Ensure the textarea is visible
-.click({ force: true })   // Click to activate the textarea
-.clear()                  // Clear any existing text
-.type('This module covers the basics of Automation Testing.');
+
+        // cy.get('[href="/admin/courses/70/curriculum"]').click();
+        // cy.get('.gap-y-5 > .inline-flex').click();
 
     });
 
