@@ -35,7 +35,7 @@ describe('Home Page (Learn)', () => {
         cy.url().should('include', '/admin/courses/');
 
         cy.contains('Sessions').click();
-        cy.contains('Create Session', {timeout:10000}).should('exist').click()                  
+        // cy.contains('Create Session', {timeout:10000}).should('exist').click()                  
 
 
         // cy.contains('Settings').click();

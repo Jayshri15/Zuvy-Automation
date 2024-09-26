@@ -42,8 +42,8 @@ describe('Home Page (Learn)', () => {
         cy.contains('One at a time').click();
         
         // Fill in student details for the first student
-        cy.get('#name').type('Jayshri');
-        cy.get('#email').type('rojcojfhifhfhan20@nav.org');
+        cy.get('#name').type('Ashvini');
+        cy.get('#email').type('rohi20@nav.org');
         cy.get('button[type="submit"]').click();
 
         

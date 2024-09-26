@@ -45,9 +45,9 @@ describe('Home Page (Learn)', () => {
         // Step 8: Verify the URL contains the course ID or path
         cy.url().should('include', '/admin/courses/');
         
-        // cy.contains('Settings').click();
-        // cy.get('.my-5 > .inline-flex').click();
-        // cy.get('.border-transparent').click();
+        cy.contains('Settings').click();
+        cy.get('.my-5 > .inline-flex').click();
+        cy.get('.border-transparent').click();
 
     });
 

@@ -1,12 +1,3 @@
-/// <reference types="cypress" />
-
-Cypress.on('uncaught:exception', (err, runnable) => {
-    // Ignore specific errors to prevent test failure
-    if (err.message.includes('Cannot read properties of undefined (reading \'status\')')) {
-        return false;  // Prevent Cypress from failing the test
-    }
-});
-
 describe('Home Page (Learn)', () => {
     before(() => {
         // Log in with JWT token before running the tests
@@ -26,19 +17,19 @@ describe('Home Page (Learn)', () => {
         cy.get('input[placeholder="Enter course name"]')
             .should('be.visible')
             .click({ force: true })
-            .type('Automation jayu', { delay: 100 });
+            .type('random', { delay: 100 });
 
         cy.contains('Create Course').click();
         cy.wait(2000);
-        cy.get('.flex-col > .flex').type('Automation jayu', { delay: 100 });
-        cy.contains('Automation jayu', { timeout: 10000 }).should('exist').click();
+        cy.get('.flex-col > .flex').type('random', { delay: 100 });
+        cy.contains('random', { timeout: 10000 }).should('exist').click();
         cy.url().should('include', '/admin/courses/');
 
         // Step 4: Navigate to Curriculum and add a module
         cy.contains('Curriculum').click();
 
         // Wait for the "Add module" button to be visible before clicking
-        cy.contains('Add module').click();
+        cy.contains('Add Module').click();
 
         // Fill in module details
         cy.get('input[name="name"]').should('be.visible').type('Navgurukul');  // Module name
@@ -53,12 +44,17 @@ describe('Home Page (Learn)', () => {
           .contains('27 weeks') // Ensure it contains the correct text
           .should('be.visible')  // Check if it is visible
           .click();             // Click the element
+          
+        cy.contains('button', 'Add Chapter').should('be.visible').click(); // Click the button
+        cy.contains('div', 'Assessment').should('be.visible').click(); // Click the element
+        // cy.contains('Any Difficulty').click(); // Open the dropdown
+        cy.contains('All Topics').click()
 
 
-        // Step 6: Navigate to Settings and perform actions
-        // cy.contains('Settings').click();
-        // cy.get('.my-5 > .inline-flex').click();
-        // cy.get('.border-transparent').click();
+
+
+
+
     });
 
     after(() => {
