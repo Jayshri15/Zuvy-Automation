@@ -29,7 +29,7 @@ describe('Home Page (Learn)', () => {
         cy.contains('Curriculum').click();
 
         // Wait for the "Add module" button to be visible before clicking
-        cy.contains('Add Module').click();
+        cy.contains('Add module').click();
 
         // Fill in module details
         cy.get('input[name="name"]').should('be.visible').type('Navgurukul');  // Module name
@@ -48,7 +48,12 @@ describe('Home Page (Learn)', () => {
         cy.contains('button', 'Add Chapter').should('be.visible').click(); // Click the button
         cy.contains('div', 'Assessment').should('be.visible').click(); // Click the element
         // cy.contains('Any Difficulty').click(); // Open the dropdown
-        cy.contains('All Topics').click()
+        // cy.contains('All Topics').click()
+
+// Using the name attribute
+// cy.get('[name="addQuestion"]')
+// .click(); // Perform the click action
+
 
 
 

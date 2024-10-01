@@ -13,42 +13,44 @@ describe('Home Page (Learn)', () => {
     });
 
     it('should create a new course, set its duration, and manage batches and students', () => {
-        // Step 1: Visit the home page
         cy.visit('https://dev.app.zuvy.org/');
 
-        // Step 2: Navigate to the "Courses" section
+        // Step 1: Navigate to Courses section
         cy.get('.bg-white').click();  // Assuming this is the side menu or navigation
-        cy.contains('Courses').click(); // Find the "Courses" option and click
+        cy.contains('Courses').click(); 
 
-        // Step 3: Create a new course
-        cy.get('.flex-col > .inline-flex').click(); // Click the "Create Course" button
-        
-        // Step 4: Enter a course name
-        cy.get('input[placeholder="Enter course name"]')
+        // Step 2: Create a new course
+        cy.contains('New Course').click(); // Adjust 'Create Course' to the actual text on the button
+
+        // Step 3: Enter a course name
+        // Corrected syntax for the placeholder attribute
+        cy.get('input[placeholder="fjofjoe"]')
             .should('be.visible')
             .click({ force: true })
             .type('Automation jayu', { delay: 100 }); // Type the course name
-        
-        // Step 5: Submit the new course creation
+
+        // Step 4: Submit the new course creation
         cy.contains('Create Course').click(); 
         cy.wait(2000); // Wait for 2 seconds to allow the course to be created
-        
-        // Step 6: Verify the course was created and is visible in the list
+
+        // Step 5: Verify the course was created and is visible in the list
         cy.get('.flex-col > .flex')  // Assuming this is where the list of courses appears
             .type('Automation jayu', { delay: 100 });
-        
-        // Step 7: Check if the course is listed and click it
+
+        // Step 6: Check if the course is listed and click it
         cy.contains('Automation jayu', { timeout: 10000 }) // Ensure the course is created and listed
             .should('exist')
             .click();
 
-        // Step 8: Verify the URL contains the course ID or path
+        // Step 7: Verify the URL contains the course ID or path
         cy.url().should('include', '/admin/courses/');
         
-        cy.contains('Settings').click();
-        cy.get('.my-5 > .inline-flex').click();
-        cy.get('.border-transparent').click();
+        // Step 8: Fill in the course details (topic and duration)
+        cy.get('input[name="bootcampTopic"]').type('Super-Bootcamp');
+        cy.get('input[name="duration"]').type('12 weeks');
 
+        // Step 9: Submit the changes
+        cy.get('button.bg-secondary.text-white').click();
     });
 
     after(function () {
